@@ -1,0 +1,100 @@
+this model is called the "Symbol Net"
+{
+	-structural atom == symbol in set that has the minimum amount of information to describe a symbol, character == structural atom of text
+	-"x" == symbol id x, "x(n)" == symbol x bound to structural atom symbol[n]
+	-symbol organization laws can vary but must be deterministic 
+	-these symbol structures are symbol-networks
+	-symbol networks can share symbols between them as structural atoms
+	-symbol networks of one purpose can communicate with networks of another
+
+	-the symbols coming into the system must couple with the structural atoms all at once and should the sub-symbols making up the symbol and structural atom match then that information is available to the structure
+	-once available to the structure the internal rules of the symbol-network determine how the information is manipulated through the symbols and their relationships and behaviors
+}
+
+
+-the following symbol networks show the rules for some potentially useful networks whose application will depend on the usecase
+
+rulset outline for pyramid symbol network extends symbol net
+{
+	-a hierarchicy of symbols representing one encoded piece of information through their relationships is a symbol-trace
+	-these traces exist superimposed withing the symbol structure sharing structural atoms
+	0{"a" "b" "c" "d"}
+	1{"ab" + "bc" + "cd"}
+	2{"abc" + "bcd"}
+	3{"abcd"} 
+	
+	==
+	
+	0{"0(a)" "1(b)" "2(c)" "3(d)"}
+	1{"4" + "5" + "6"}
+	2{"7" + "8"}
+	3{"9"}
+	
+	-when building a scaffold (CAN or Current Active Nodes) is setup to help with building the trace.
+	-The CAN symbols are pointers, or references to nodes and structural atoms from the symbol net. 
+	-The CAN is a member of the pyramid symbol network that acts as an auxiliary sub-structure to enable isolation of a trace for direct manipulation and analysis. 
+	
+	Trace building with CAN:
+		-If desired when a symbol is referenced during filling in then that symbol can be reinforced, simulating neuroplasticity and allowing for the tracking of how many times that symbol has appeared
+		-The CAN scaffold is setup based on the input dimensions:
+			-Example:
+			-"baba" is 4 atoms long so the trace needs to be 4 layers high for a symbol to represent the entire pattern
+			-Scaffold:
+			[
+			0{"()" "()" "()" "()"}
+			1{"" + "" + ""}
+			2{"" + ""}
+			3{""}
+			]
+		-when building the first step is to fill the atom bound layer, or structural layer:
+			-Example:
+			-"baba" has 4 structural atoms to bind. Find these by querying the symbol structure to see if a node exists bound to that atom yet, if not create it and return the symbol
+			-Scaffold:
+			[
+			0{"1(b)" "0(a)" "1(b)" "0(a)"}
+			1{"" + "" + ""}
+			2{"" + ""}
+			3{""}
+			]
+		-fill every remaining level using the following method:
+			-Do this by checking each node and the next to see if an upper layer connection exists
+			-Example:
+			-("ba" !exists: return new 10; "ab" exists: return 4; "ba" exists: return 10;)
+			-("bab" !exists: return new 11; "aba" !exists: return new 12)
+			-("baba" !exists: return new 13;)
+			-Scaffold:
+			[
+			0{"1(b)" "0(a)" "1(b)" "0(a)"}
+			1{"10" + "4" + "10"}
+			2{"11" + "12"}
+			3{"13"}
+			]
+		
+		-To query without building return and empty symbol instead of creating a new one.
+	
+	Trace charging with CAN:
+		-The overall charging scheme you use will determine how activations are handled, this only shows how to select the proper nodes to activate using the CAN scaffold.
+		-If another symbol network is linked to the symbols activated then the charging information enters the connected symbol network and activates the strutural atom bound symbols there.
+		-Choose level to start & end on
+		-For each level from starting level to top level:
+			-For each node on CAN level:
+				-Take the symbol the CAN symbol is pointing to and call its activation function
+		-Gather the symbols that are activated and collect the structural symbol patterns they represent with the charges in an array or something, this is the output to be further refined by the user.
+		
+	-provide nodes with an activation function & current state
+	-provide the ability to activate nodes that are in the CAN
+	-Use CAN to search traces on higher levels than they are input to narrow associations found
+	-Use can to reinforce all the symbols in the trace to simulate neuroplasticity
+}
+
+ruleset outline for computational symbol network extends symbol net
+{
+	-these rules allow for logic gates to be formed to handle information passing through the symbol structure in dynamic, but deterministic ways
+	-Logic gate structures that handles information in a deterministic fashion
+}
+
+
+ruleset outline for chronological symbol network, extends  pyramid symbol network
+{
+	-take the higher-symbol at the top of the trace and connect it to the previous higher-level symbol found
+}
