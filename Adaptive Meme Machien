@@ -1,0 +1,34 @@
+Adaptive Meme Machine:
+  - core symbol:
+	  - represents the core concept identifying a meme
+	  - can be a name, flag, or other symbol
+	  - indivisible idea that makes up a meme
+	  - cannot be further subdivided without losing meaning
+	  - has minimum number of symbols needed to describe it (degree)
+	  - Does not require body symbols to exist, onyl identifier
+  - body symbols:
+	  - attached to the core symbol
+	  - criteria for updates and representations
+	  - can be political ideologies, biases, or opcodes
+	  - attachment rules can vary as long as they are deterministic
+	  - each body symbol may bind to many body symbols
+	  - a body symbol assembly can only make one connection to a core symbol
+	  - no assembly can connect to more than one core symbol
+	  - core symbols can connect to many body symbols
+	  - every body symbol in the chain forms a link in a hash-verified linked list, starting from the core symbol as the root symbol in the tree
+  - ego-token:
+	  - contains the core symbol and body symbols for a meme
+	  - requires matching codex to process body symbols
+	  - contains information on which codex to use
+	  - symbols in ego-token are unique to the thinking agent
+	  - source of entropy in meme processing
+  - agent symbol:
+	  - manifested by information processing agent
+	  - evaluated based on body symbol criteria
+	  - creates or alters representation of core symbol
+	  - channel for encoding determined by thinking agent
+  - memetic machine:
+      - type of meme with body symbols made of logical rules (opcodes)
+      - predictable and reproducible iterative behavior
+  - Notation: 
+      - CORE["core-symbol-name"]->{ BODY["body-symbol-name"]["criteria-symbol-name"]->Definition, BODY["body-symbol-name"]["criteria-symbol-name"]->Definition, ...}
